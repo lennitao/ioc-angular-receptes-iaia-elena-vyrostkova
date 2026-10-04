@@ -8,5 +8,6 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
 })
 export class App {
+  public appName = 'Les receptes de la iaia';
   protected readonly title = signal('ioc-angular-receptes-iaia-elena-vyrostkova');
 }
