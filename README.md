@@ -79,7 +79,7 @@ ng serve
 
 ## Estat de l'EAC1
 
-L'EAC1 està completat.
+L'EAC1 està completat. La configuració inicial del projecte està feta i comprovada.
 
 ## Enllaç del repositori
 
