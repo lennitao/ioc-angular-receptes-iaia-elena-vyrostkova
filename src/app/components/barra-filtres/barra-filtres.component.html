@@ -8,12 +8,17 @@
       name="cerca"
       [(ngModel)]="cerca"
       placeholder="Ex.: escudella..."
+      required
       minlength="3"
       #campCerca="ngModel"
     />
 
     @if (campCerca.invalid && (campCerca.dirty || campCerca.touched)) {
-      <p class="missatge-error" role="alert">El títol ha de tenir un mínim de 3 caràcters.</p>
+      @if (campCerca.errors?.['required']) {
+        <p class="missatge-error" role="alert">Has d'introduir un títol per cercar.</p>
+      } @else if (campCerca.errors?.['minlength']) {
+        <p class="missatge-error" role="alert">El títol ha de tenir un mínim de 3 caràcters.</p>
+      }
     }
   </div>
 
@@ -29,9 +34,7 @@
     </select>
   </div>
 
-  <button type="submit" [disabled]="cerca.trim().length > 0 && cerca.trim().length < 3">
-    Aplicar filtres
-  </button>
+  <button type="submit" [disabled]="formulari.invalid">Aplicar filtres</button>
 
   <button
     type="button"

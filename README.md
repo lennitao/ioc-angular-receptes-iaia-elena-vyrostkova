@@ -71,8 +71,10 @@ ng build
 ## Funcionalitats
 
 - Visualització de receptes.
-- Cerca per títol amb validació de longitud mínima de 3 caràcters quan s'introdueix text.
-- Filtratge per categoria independentment de la cerca per títol.
+- Cerca per títol amb validació obligatòria (`required`) i longitud mínima de 3 caràcters (`minlength`).
+- Selecció d'una categoria per combinar-la amb el text de cerca.
+- Botó d'aplicació dels filtres deshabilitat quan el formulari és invàlid.
+- Missatges d'error quan el camp de cerca està buit o no compleix la longitud mínima.
 - Restabliment dels filtres.
 - Comptador de resultats.
 - Visualització del detall de la recepta seleccionada.
@@ -92,4 +94,16 @@ Per executar les proves unitàries:
 
 ```bash
 ng test
+```
+
+## Repositori i lliurament
+
+- **Repositori GitHub:** https://github.com/lennitao/ioc-angular-receptes-iaia-elena-vyrostkova
+- **Branca de treball:** `ra2-components`
+- **Branca publicada:** https://github.com/lennitao/ioc-angular-receptes-iaia-elena-vyrostkova/tree/ra2-components
+
+Per consultar l'historial de canvis:
+
+```bash
+git log --oneline --decorate --max-count=5
 ```
