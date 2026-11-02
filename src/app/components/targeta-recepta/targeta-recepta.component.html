@@ -1,0 +1,19 @@
+<article class="targeta-recepta">
+  <app-etiqueta-recepta [categoria]="recepta.categoria" [destacada]="recepta.destacada ?? false" />
+
+  <h2>{{ recepta.titol }}</h2>
+
+  <p>{{ recepta.descripcio }}</p>
+
+  <p>
+    <strong>Valoració:</strong>
+    ★ {{ recepta.valoracio }} / 5
+  </p>
+
+  <p>
+    <strong>Actualitzada:</strong>
+    {{ recepta.dataActualitzacio | date: 'dd/MM/yyyy' }}
+  </p>
+
+  <button type="button" (click)="seleccionarRecepta()">Veure detall</button>
+</article>
