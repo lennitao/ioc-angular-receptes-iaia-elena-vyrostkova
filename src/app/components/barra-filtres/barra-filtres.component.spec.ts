@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BarraFiltres } from './barra-filtres.component';
+import { BarraFiltresComponent } from './barra-filtres.component';
 
-describe('BarraFiltres', () => {
-  let component: BarraFiltres;
-  let fixture: ComponentFixture<BarraFiltres>;
+describe('BarraFiltresComponent', () => {
+  let component: BarraFiltresComponent;
+  let fixture: ComponentFixture<BarraFiltresComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BarraFiltres],
+      imports: [BarraFiltresComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BarraFiltres);
+    fixture = TestBed.createComponent(BarraFiltresComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

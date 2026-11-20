@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EtiquetaRecepta } from './etiqueta-recepta.component';
+import { EtiquetaReceptaComponent } from './etiqueta-recepta.component';
 
-describe('EtiquetaRecepta', () => {
-  let component: EtiquetaRecepta;
-  let fixture: ComponentFixture<EtiquetaRecepta>;
+describe('EtiquetaReceptaComponent', () => {
+  let component: EtiquetaReceptaComponent;
+  let fixture: ComponentFixture<EtiquetaReceptaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EtiquetaRecepta],
+      imports: [EtiquetaReceptaComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EtiquetaRecepta);
+    fixture = TestBed.createComponent(EtiquetaReceptaComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

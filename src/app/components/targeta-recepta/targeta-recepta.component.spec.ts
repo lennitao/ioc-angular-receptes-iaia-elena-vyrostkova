@@ -1,21 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TargetaRecepta } from './targeta-recepta.component';
+import { TargetaReceptaComponent } from './targeta-recepta.component';
 
-describe('TargetaRecepta', () => {
-  let component: TargetaRecepta;
-  let fixture: ComponentFixture<TargetaRecepta>;
+describe('TargetaReceptaComponent', () => {
+  let component: TargetaReceptaComponent;
+  let fixture: ComponentFixture<TargetaReceptaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TargetaRecepta],
+      imports: [TargetaReceptaComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TargetaRecepta);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(TargetaReceptaComponent);
+
+    fixture.componentRef.setInput('recepta', {
+      id: 1,
+      titol: 'Escudella',
+      descripcio: 'Recepta tradicional catalana.',
+      categoria: 'Primers plats',
+      dataActualitzacio: '2026-01-01',
+      valoracio: 5,
+      destacada: true,
+    });
+
     await fixture.whenStable();
   });
 
   it('should create', () => {
+    component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
