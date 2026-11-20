@@ -13,11 +13,12 @@ describe('TargetaReceptaComponent', () => {
     fixture = TestBed.createComponent(TargetaReceptaComponent);
 
     fixture.componentRef.setInput('recepta', {
-      id: 1,
+      id: 'rec-01',
       titol: 'Escudella',
       descripcio: 'Recepta tradicional catalana.',
       categoria: 'Primers plats',
-      dataActualitzacio: '2026-01-01',
+      estat: 'Publicada',
+      dataActualitzacio: '2026-10-15',
       valoracio: 5,
       destacada: true,
     });
