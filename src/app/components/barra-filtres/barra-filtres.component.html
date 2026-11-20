@@ -1,0 +1,47 @@
+<form class="barra-filtres" #formulari="ngForm" (ngSubmit)="actualitzarFiltres()">
+  <div class="camp-filtre">
+    <label for="cerca">Cercar recepta pel títol</label>
+
+    <input
+      id="cerca"
+      type="search"
+      name="cerca"
+      [(ngModel)]="cerca"
+      placeholder="Ex.: escudella..."
+      minlength="3"
+      #campCerca="ngModel"
+    />
+
+    @if (campCerca.invalid && (campCerca.dirty || campCerca.touched)) {
+      <p class="missatge-error" role="alert">El títol ha de tenir un mínim de 3 caràcters.</p>
+    }
+  </div>
+
+  <div class="camp-filtre">
+    <label for="categoria">Filtrar per categoria</label>
+
+    <select id="categoria" name="categoria" [(ngModel)]="categoria">
+      <option value="">Totes les categories</option>
+
+      @for (cat of categories; track cat) {
+        <option [value]="cat">{{ cat }}</option>
+      }
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="cerca.trim().length > 0 && cerca.trim().length < 3">
+    Aplicar filtres
+  </button>
+
+  <button
+    type="button"
+    (click)="
+      cerca = '';
+      categoria = '';
+      formulari.resetForm({ cerca: '', categoria: '' });
+      actualitzarFiltres()
+    "
+  >
+    Restablir filtres
+  </button>
+</form>

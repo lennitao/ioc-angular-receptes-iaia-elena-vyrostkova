@@ -1,0 +1,12 @@
+.llista-receptes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 24px;
+}
+
+@media (max-width: 600px) {
+  .llista-receptes {
+    grid-template-columns: 1fr;
+  }
+}

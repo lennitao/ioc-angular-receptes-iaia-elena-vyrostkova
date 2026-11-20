@@ -1,59 +1,95 @@
-# IocAngularReceptesIaiaElenaVyrostkova
+# Receptes de la iaia
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.1.
+Aplicació web desenvolupada amb Angular per consultar receptes tradicionals de casa nostra. Permet cercar receptes pel títol, filtrar-les per categoria i consultar els detalls.
 
-## Development server
+## Tecnologies i versions
 
-To start a local development server, run:
+- Angular: 22.2.1
+- Angular CLI: 22.2.1
+- Node.js: 24.21.0
+- npm: 11.19.0
+- TypeScript: 6.0.3
+
+## Branca de desenvolupament
+
+`ra2-components`
+
+## Instal·lació i execució
+
+Clonar el repositori:
+
+```bash
+git clone https://github.com/lennitao/ioc-angular-receptes-iaia-elena-vyrostkova.git
+```
+
+Entrar a la carpeta del projecte:
+
+```bash
+cd ioc-angular-receptes-iaia-elena-vyrostkova
+```
+
+Instal·lar les dependències:
+
+```bash
+npm install
+```
+
+Canviar a la branca de treball:
+
+```bash
+git switch ra2-components
+```
+
+Iniciar el servidor de desenvolupament:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Obrir el navegador a `http://localhost:4200/`.
 
-## Code scaffolding
+## Construcció del projecte
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Per compilar l'aplicació:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Components creats
 
-## Running unit tests
+- **LlistaReceptesComponent:** mostra el conjunt de receptes.
+- **TargetaReceptaComponent:** mostra la informació de cada recepta i permet seleccionar-la.
+- **EtiquetaReceptaComponent:** mostra la categoria i si la recepta és destacada.
+- **BarraFiltresComponent:** permet cercar receptes pel títol i filtrar-les per categoria.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Model i dades
+
+- `Recepta`: model que defineix l'estructura de les receptes.
+- `RECEPTES_MOCK`: conjunt de 10 receptes de prova.
+
+## Funcionalitats
+
+- Visualització de receptes.
+- Cerca per títol amb validació de longitud mínima de 3 caràcters quan s'introdueix text.
+- Filtratge per categoria independentment de la cerca per títol.
+- Restabliment dels filtres.
+- Comptador de resultats.
+- Visualització del detall de la recepta seleccionada.
+- Missatge informatiu quan no hi ha resultats.
+
+## Accessibilitat i disseny responsive
+
+- Enllaç de salt al contingut principal.
+- Focus visible en la navegació amb teclat.
+- Etiquetes associades als camps del formulari.
+- Ús de `aria-live`, `role="status"` i `role="alert"`.
+- Disseny adaptable a pantalles petites amb punts de ruptura de 600 px.
+
+## Proves
+
+Per executar les proves unitàries:
 
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

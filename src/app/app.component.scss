@@ -1,0 +1,91 @@
+.salt-contingut {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 1000;
+  background: #526344;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:focus,
+  &:focus-visible {
+    top: 16px;
+    outline: 3px solid #c28b45;
+    outline-offset: 3px;
+  }
+}
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f7f4ec;
+  color: #383c2e;
+  font-family: Arial, sans-serif;
+}
+
+.contenidor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.capcalera {
+  text-align: center;
+  margin-bottom: 36px;
+
+  h1 {
+    color: #526344;
+    font-family: Georgia, serif;
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #777766;
+    font-size: 1.1rem;
+  }
+}
+
+.resultats {
+  margin-top: 36px;
+
+  h2 {
+    color: #526344;
+    font-family: Georgia, serif;
+    font-size: 1.8rem;
+  }
+
+  > p {
+    color: #777766;
+  }
+}
+
+.detall-recepta {
+  margin-top: 32px;
+  padding: 24px;
+  background: #e8eddf;
+  border-left: 5px solid #71845d;
+  border-radius: 10px;
+
+  h2 {
+    color: #526344;
+    font-family: Georgia, serif;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .contenidor {
+    padding: 24px 16px;
+  }
+
+  .capcalera h1 {
+    font-size: 2rem;
+  }
+}
