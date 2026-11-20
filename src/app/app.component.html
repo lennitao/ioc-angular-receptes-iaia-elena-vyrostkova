@@ -1,11 +1,11 @@
 <a class="salt-contingut" href="#contingut-principal"> Salta al contingut principal </a>
 
-<main class="contenidor" id="contingut-principal">
-  <header class="capcalera">
-    <h1>Receptes de la iaia</h1>
-    <p>Descobreix les receptes tradicionals de casa nostra.</p>
-  </header>
+<header class="capcalera">
+  <h1>Receptes de la iaia</h1>
+  <p>Descobreix les receptes tradicionals de casa nostra.</p>
+</header>
 
+<main class="contenidor" id="contingut-principal">
   <app-barra-filtres (filtresCanviats)="aplicarFiltres($event)" />
 
   <section class="resultats">
@@ -15,20 +15,10 @@
 
     <app-llista-receptes
       [receptes]="receptesFiltrades"
+      [receptaSeleccionada]="receptaSeleccionada"
       (seleccionada)="seleccionarRecepta($event)"
     />
   </section>
-
-  @if (receptaSeleccionada) {
-    <section class="detall-recepta">
-      <h2>{{ receptaSeleccionada.titol }}</h2>
-      <p>{{ receptaSeleccionada.descripcio }}</p>
-      <p>Categoria: {{ receptaSeleccionada.categoria }}</p>
-      <p>Valoració: {{ receptaSeleccionada.valoracio }} / 5</p>
-    </section>
-  } @else {
-    <p>Selecciona una recepta per veure'n els detalls.</p>
-  }
 </main>
 
 <router-outlet />

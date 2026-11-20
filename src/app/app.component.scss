@@ -26,15 +26,11 @@
   font-family: Arial, sans-serif;
 }
 
-.contenidor {
+.capcalera {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 24px;
-}
-
-.capcalera {
+  padding: 40px 24px 0;
   text-align: center;
-  margin-bottom: 36px;
 
   h1 {
     color: #526344;
@@ -49,6 +45,12 @@
   }
 }
 
+.contenidor {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 36px 24px 48px;
+}
+
 .resultats {
   margin-top: 36px;
 
@@ -56,23 +58,11 @@
     color: #526344;
     font-family: Georgia, serif;
     font-size: 1.8rem;
+    margin-top: 0;
   }
 
   > p {
     color: #777766;
-  }
-}
-
-.detall-recepta {
-  margin-top: 32px;
-  padding: 24px;
-  background: #e8eddf;
-  border-left: 5px solid #71845d;
-  border-radius: 10px;
-
-  h2 {
-    color: #526344;
-    font-family: Georgia, serif;
   }
 }
 
@@ -81,11 +71,15 @@ button {
 }
 
 @media (max-width: 600px) {
-  .contenidor {
-    padding: 24px 16px;
+  .capcalera {
+    padding: 24px 16px 0;
+
+    h1 {
+      font-size: 2rem;
+    }
   }
 
-  .capcalera h1 {
-    font-size: 2rem;
+  .contenidor {
+    padding: 24px 16px;
   }
 }

@@ -1,4 +1,4 @@
-<article class="targeta-recepta">
+<article class="targeta-recepta" [class.oberta]="oberta">
   <app-etiqueta-recepta [categoria]="recepta.categoria" [destacada]="recepta.destacada ?? false" />
 
   <h2>{{ recepta.titol }}</h2>
@@ -15,5 +15,15 @@
     {{ recepta.dataActualitzacio | date: 'dd/MM/yyyy' }}
   </p>
 
-  <button type="button" (click)="seleccionarRecepta()">Veure detall</button>
+  <button type="button" [attr.aria-expanded]="oberta" (click)="seleccionarRecepta()">
+    {{ oberta ? 'Amagar detall' : 'Veure detall' }}
+  </button>
+
+  @if (oberta) {
+    <div class="detall-desplegat">
+      <p><strong>Categoria:</strong> {{ recepta.categoria }}</p>
+      <p><strong>Valoració:</strong> {{ recepta.valoracio }} / 5</p>
+      <p>{{ recepta.descripcio }}</p>
+    </div>
+  }
 </article>

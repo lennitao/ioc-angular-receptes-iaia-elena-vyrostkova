@@ -1,6 +1,10 @@
 <section class="llista-receptes" aria-label="Llistat de receptes">
   @for (recepta of receptes; track recepta.id) {
-    <app-targeta-recepta [recepta]="recepta" (seleccionada)="seleccionada.emit($event)" />
+    <app-targeta-recepta
+      [recepta]="recepta"
+      [oberta]="receptaSeleccionada?.id === recepta.id"
+      (seleccionada)="seleccionada.emit($event)"
+    />
   } @empty {
     <p role="status">No hi ha receptes disponibles.</p>
   }

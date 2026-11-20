@@ -48,6 +48,6 @@ export class App {
   }
 
   seleccionarRecepta(recepta: Recepta): void {
-    this.receptaSeleccionada = recepta;
+    this.receptaSeleccionada = this.receptaSeleccionada?.id === recepta.id ? null : recepta;
   }
 }

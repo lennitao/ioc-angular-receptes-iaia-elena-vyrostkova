@@ -12,6 +12,7 @@ import { EtiquetaReceptaComponent } from '../etiqueta-recepta/etiqueta-recepta.c
 })
 export class TargetaReceptaComponent {
   @Input({ required: true }) recepta!: Recepta;
+  @Input() oberta = false;
 
   @Output() seleccionada = new EventEmitter<Recepta>();
 

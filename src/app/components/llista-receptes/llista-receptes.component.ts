@@ -11,6 +11,7 @@ import { TargetaReceptaComponent } from '../targeta-recepta/targeta-recepta.comp
 })
 export class LlistaReceptesComponent {
   @Input({ required: true }) receptes: Recepta[] = [];
+  @Input() receptaSeleccionada: Recepta | null = null;
 
   @Output() seleccionada = new EventEmitter<Recepta>();
 }
