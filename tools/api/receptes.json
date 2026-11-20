@@ -1,0 +1,98 @@
+{
+  "receptes": [
+    {
+      "id": "rec-01",
+      "titol": "  Escudella i carn d’olla  ",
+      "descripcio": "Plat tradicional català amb brou, verdures, carn i galets.",
+      "categoria": "primers plats",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-15",
+      "valoracio": 4.9,
+      "popular": true
+    },
+    {
+      "id": "rec-02",
+      "titol": "Canelons de rostit",
+      "descripcio": "Canelons farcits de carn rostida i coberts amb beixamel.",
+      "categoria": "Primers plats",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-18",
+      "valoracio": 4.8,
+      "popular": true
+    },
+    {
+      "id": "rec-03",
+      "titol": "Pollastre rostit",
+      "descripcio": "Pollastre al forn amb prunes, pinyons i herbes aromàtiques.",
+      "categoria": "segons plats",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-20",
+      "valoracio": 4.7,
+      "popular": false
+    },
+    {
+      "id": "rec-04",
+      "titol": "Mandonguilles amb sípia",
+      "descripcio": "Guisat casolà de mandonguilles amb sípia i pèsols.",
+      "categoria": "Segons plats",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-21",
+      "valoracio": 4.8
+    },
+    {
+      "id": "rec-05",
+      "titol": "Crema catalana",
+      "descripcio": "Postres tradicionals amb crema suau i sucre cremat.",
+      "categoria": "Postres",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-22",
+      "valoracio": 5.0,
+      "popular": true
+    },
+    {
+      "id": "rec-06",
+      "titol": "Mel i mató",
+      "descripcio": "Postres senzilles de mató fresc amb mel i nous.",
+      "categoria": "postres",
+      "estat": "revisada",
+      "data_actualitzacio": "2026-10-23",
+      "valoracio": 4.6
+    },
+    {
+      "id": "rec-07",
+      "titol": "Pa amb tomàquet",
+      "descripcio": "Pa de pagès torrat amb tomàquet, oli d’oliva i sal.",
+      "categoria": "Aperitius",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-24",
+      "valoracio": 4.7
+    },
+    {
+      "id": "rec-08",
+      "titol": "Croquetes de pernil",
+      "descripcio": "Croquetes casolanes cremoses amb pernil salat.",
+      "categoria": "aperitius",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-25",
+      "valoracio": 4.5
+    },
+    {
+      "id": "rec-09",
+      "titol": "Llimonada casolana",
+      "descripcio": "Beguda refrescant preparada amb llimona natural.",
+      "categoria": "Begudes",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-26",
+      "valoracio": 4.4
+    },
+    {
+      "id": "rec-10",
+      "titol": "Orxata de xufa",
+      "descripcio": "Beguda tradicional valenciana elaborada amb xufes.",
+      "categoria": "begudes",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-10-27",
+      "valoracio": 4.8
+    }
+  ]
+}
