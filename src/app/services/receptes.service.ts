@@ -48,7 +48,7 @@ export class ReceptesService {
     this.iniciarFluxCerca();
   }
 
-  /** Flux reactiu principal amb switchMap per cancel·lar peticions obsoletes */
+  // Escolta els canvis de cerca i cancel·la peticions anteriors amb switchMap
   private iniciarFluxCerca(): void {
     this.criterisSubject
       .pipe(

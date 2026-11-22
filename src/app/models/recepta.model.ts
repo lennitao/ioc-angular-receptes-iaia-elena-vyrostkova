@@ -3,7 +3,7 @@ export type CategoriaRecepta =
 
 export type EstatPublicacio = 'Publicada' | 'Revisada' | 'Esborrany';
 
-/** Model intern utilitzat pels components de l'aplicació */
+// Model intern utilitzat pels components de l'aplicació
 export interface Recepta {
   id: string;
   titol: string;
@@ -15,7 +15,7 @@ export interface Recepta {
   destacada?: boolean;
 }
 
-/** Estructura exacta que retorna l'API local (json-server) */
+// Estructura exacta que retorna l'API local (json-server)
 export interface ReceptaApiResponse {
   id: string | number;
   titol: string;
@@ -27,13 +27,13 @@ export interface ReceptaApiResponse {
   popular?: boolean;
 }
 
-/** Dades necessàries per donar d'alta una recepta nova amb POST */
+// Dades necessàries per donar d'alta una recepta nova amb POST
 export type NovaRecepta = Pick<
   Recepta,
   'titol' | 'descripcio' | 'categoria' | 'valoracio' | 'destacada'
 >;
 
-/** Estats possibles del servei HTTP */
+// Estats possibles del servei HTTP
 export type EstatServei = 'inicial' | 'carregant' | 'exit' | 'error';
 
 export interface EstatReceptes {

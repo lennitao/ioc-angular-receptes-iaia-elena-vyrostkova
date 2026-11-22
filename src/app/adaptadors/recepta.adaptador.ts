@@ -41,7 +41,7 @@ function normalitzarData(dataApi: string | undefined): string {
   return /^\d{4}-\d{2}-\d{2}$/.test(text) ? text : new Date().toISOString().split('T')[0];
 }
 
-/** Transforma i normalitza un registre de l'API al model intern Recepta */
+// Transforma i normalitza un registre de l'API al model intern Recepta
 export function adaptarReceptaApi(api: ReceptaApiResponse): Recepta {
   return {
     id: String(api.id),
@@ -55,12 +55,12 @@ export function adaptarReceptaApi(api: ReceptaApiResponse): Recepta {
   };
 }
 
-/** Transforma una llista de receptes de l'API */
+// Transforma una llista de receptes de l'API
 export function adaptarReceptesApi(llistaApi: ReceptaApiResponse[]): Recepta[] {
   return Array.isArray(llistaApi) ? llistaApi.map(adaptarReceptaApi) : [];
 }
 
-/** Prepara una recepta nova per enviar-la a l'API amb POST */
+// Prepara una recepta nova per enviar-la a l'API amb POST
 export function prepararReceptaApi(nova: NovaRecepta): Omit<ReceptaApiResponse, 'id'> {
   return {
     titol: nova.titol.trim(),

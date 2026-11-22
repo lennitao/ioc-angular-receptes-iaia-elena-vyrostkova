@@ -2,10 +2,7 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from
 import { Observable, map, of, switchMap, timer } from 'rxjs';
 import { ReceptesService } from '../services/receptes.service';
 
-/**
- * Validador síncron: comprova que el terme de cerca no contingui
- * caràcters especials prohibits (<, >, {, }, ;) ni només espais.
- */
+// Validador síncron: evita només espais i caràcters especials prohibits
 export function termeCercaValidValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const valor = String(control.value ?? '');
@@ -25,10 +22,7 @@ export function termeCercaValidValidator(): ValidatorFn {
   };
 }
 
-/**
- * Validador asíncron: consulta ReceptesService (sense HttpClient directe)
- * per avisar si el terme de cerca no coincideix amb cap recepta existent.
- */
+// Validador asíncron: consulta el servei per veure si existeix alguna coincidència
 export function termeExistentAsyncValidator(receptesService: ReceptesService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
     const terme = String(control.value ?? '').trim();
