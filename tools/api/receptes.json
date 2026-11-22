@@ -46,7 +46,7 @@
       "categoria": "Postres",
       "estat": "publicada",
       "data_actualitzacio": "2026-10-22",
-      "valoracio": 5.0,
+      "valoracio": 5,
       "popular": true
     },
     {
@@ -93,6 +93,17 @@
       "estat": "publicada",
       "data_actualitzacio": "2026-10-27",
       "valoracio": 4.8
+    },
+    {
+      "titol": "Trinxat de la Cerdanya",
+      "descripcio": "Col, patata i cansalada rostida.",
+      "categoria": "Primers plats",
+      "estat": "publicada",
+      "data_actualitzacio": "2026-11-22",
+      "valoracio": 4.5,
+      "popular": false,
+      "id": "S-rJu-MMsX0"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

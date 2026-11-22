@@ -8,17 +8,122 @@
 <main class="contenidor" id="contingut-principal">
   <app-barra-filtres (filtresCanviats)="aplicarFiltres($event)" />
 
-  <section class="resultats">
-    <h2>Les nostres receptes</h2>
+  <section class="zona-alta">
+    <div class="alta-capcalera">
+      <button
+        type="button"
+        class="btn-secundari"
+        (click)="mostrarFormulariAlta = !mostrarFormulariAlta"
+      >
+        {{ mostrarFormulariAlta ? 'Tancar formulari' : '+ Afegir recepta nova' }}
+      </button>
+    </div>
 
-    <p aria-live="polite" aria-atomic="true">Receptes trobades: {{ receptesFiltrades.length }}</p>
+    @if (missatgeAlta) {
+      <p class="banner-exit" role="status">{{ missatgeAlta }}</p>
+    }
 
-    <app-llista-receptes
-      [receptes]="receptesFiltrades"
-      [receptaSeleccionada]="receptaSeleccionada"
-      (seleccionada)="seleccionarRecepta($event)"
-    />
+    @if (errorAlta) {
+      <p class="banner-error" role="alert">{{ errorAlta }}</p>
+    }
+
+    @if (mostrarFormulariAlta) {
+      <form class="form-alta" #formAlta="ngForm" (ngSubmit)="enviarNovaRecepta()">
+        <h3>Nova recepta de la iaia</h3>
+
+        <div class="fila-camps">
+          <div class="camp">
+            <label for="nou-titol">Títol de la recepta *</label>
+            <input
+              id="nou-titol"
+              name="titol"
+              type="text"
+              [(ngModel)]="novaRecepta.titol"
+              required
+              minlength="3"
+              placeholder="Ex.: Trinxat de la Cerdanya"
+            />
+          </div>
+
+          <div class="camp">
+            <label for="nova-categoria">Categoria *</label>
+            <select id="nova-categoria" name="categoria" [(ngModel)]="novaRecepta.categoria">
+              @for (cat of categories; track cat) {
+                <option [value]="cat">{{ cat }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="camp camp-curt">
+            <label for="nova-valoracio">Valoració (0-5)</label>
+            <input
+              id="nova-valoracio"
+              name="valoracio"
+              type="number"
+              min="0"
+              max="5"
+              step="0.1"
+              [(ngModel)]="novaRecepta.valoracio"
+            />
+          </div>
+        </div>
+
+        <div class="camp">
+          <label for="nova-descripcio">Descripció *</label>
+          <textarea
+            id="nova-descripcio"
+            name="descripcio"
+            rows="2"
+            [(ngModel)]="novaRecepta.descripcio"
+            required
+            minlength="5"
+            placeholder="Descriu breument els ingredients o elaboració..."
+          ></textarea>
+        </div>
+
+        <label class="checkbox-inline">
+          <input type="checkbox" name="destacada" [(ngModel)]="novaRecepta.destacada" />
+          Marcar com a recepta destacada
+        </label>
+
+        <div class="accions-alta">
+          <button type="submit" class="btn-primari" [disabled]="formAlta.invalid || desant">
+            {{ desant ? 'Desant...' : 'Desar recepta' }}
+          </button>
+        </div>
+      </form>
+    }
   </section>
+
+  @if (estat$ | async; as estatActual) {
+    <section class="resultats">
+      <h2>Les nostres receptes</h2>
+
+      @if (estatActual.estat === 'carregant') {
+        <div class="estat-carrega" role="status" aria-live="polite">
+          <span class="spinner" aria-hidden="true"></span>
+          <span>Carregant receptes des de l'API...</span>
+        </div>
+      } @else if (estatActual.estat === 'error') {
+        <div class="banner-error" role="alert">
+          <p>{{ estatActual.error }}</p>
+          <button type="button" class="btn-reintentar" (click)="reintentarCarrega()">
+            Reintentar
+          </button>
+        </div>
+      } @else {
+        <p aria-live="polite" aria-atomic="true">
+          Receptes trobades: {{ estatActual.receptes.length }}
+        </p>
+
+        <app-llista-receptes
+          [receptes]="estatActual.receptes"
+          [receptaSeleccionada]="receptaSeleccionada"
+          (seleccionada)="seleccionarRecepta($event)"
+        />
+      }
+    </section>
+  }
 </main>
 
 <router-outlet />

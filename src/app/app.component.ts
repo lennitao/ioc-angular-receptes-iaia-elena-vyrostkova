@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { Recepta } from './models/recepta.model';
-import { RECEPTES_MOCK } from './mocks/receptes-mock';
+import { CategoriaRecepta, NovaRecepta, Recepta } from './models/recepta.model';
+import { ReceptesService } from './services/receptes.service';
 import { LlistaReceptesComponent } from './components/llista-receptes/llista-receptes.component';
 import {
   BarraFiltresComponent,
@@ -11,43 +13,78 @@ import {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LlistaReceptesComponent, BarraFiltresComponent],
+  imports: [RouterOutlet, AsyncPipe, FormsModule, LlistaReceptesComponent, BarraFiltresComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class App {
-  receptes: Recepta[] = RECEPTES_MOCK;
-  receptesFiltrades: Recepta[] = RECEPTES_MOCK;
+  readonly receptesService = inject(ReceptesService);
+  readonly estat$ = this.receptesService.estat$;
 
-  filtres: FiltresReceptes = {
-    cerca: '',
-    categoria: '',
-  };
+  readonly categories: CategoriaRecepta[] = [
+    'Primers plats',
+    'Segons plats',
+    'Postres',
+    'Aperitius',
+    'Begudes',
+  ];
 
   receptaSeleccionada: Recepta | null = null;
+  mostrarFormulariAlta = false;
+  missatgeAlta = '';
+  errorAlta = '';
+  desant = false;
+
+  novaRecepta: NovaRecepta = {
+    titol: '',
+    descripcio: '',
+    categoria: 'Primers plats',
+    valoracio: 4.5,
+    destacada: false,
+  };
 
   aplicarFiltres(filtres: FiltresReceptes): void {
-    this.filtres = filtres;
-
-    this.receptesFiltrades = this.receptes.filter((recepta) => {
-      const coincideixTitol = recepta.titol.toLowerCase().includes(filtres.cerca.toLowerCase());
-
-      const coincideixCategoria = !filtres.categoria || recepta.categoria === filtres.categoria;
-
-      return coincideixTitol && coincideixCategoria;
+    this.receptaSeleccionada = null;
+    this.receptesService.cercar({
+      terme: filtres.cerca,
+      categoria: filtres.categoria,
     });
-
-    const idSeleccionada = this.receptaSeleccionada?.id;
-
-    if (
-      idSeleccionada !== undefined &&
-      !this.receptesFiltrades.some((recepta) => recepta.id === idSeleccionada)
-    ) {
-      this.receptaSeleccionada = null;
-    }
   }
 
   seleccionarRecepta(recepta: Recepta): void {
     this.receptaSeleccionada = this.receptaSeleccionada?.id === recepta.id ? null : recepta;
+  }
+
+  reintentarCarrega(): void {
+    this.receptesService.reintentarUltimaConsulta();
+  }
+
+  enviarNovaRecepta(): void {
+    if (!this.novaRecepta.titol.trim() || !this.novaRecepta.descripcio.trim()) {
+      return;
+    }
+
+    this.missatgeAlta = '';
+    this.errorAlta = '';
+    this.desant = true;
+
+    this.receptesService.crearRecepta(this.novaRecepta).subscribe({
+      next: (creada) => {
+        this.desant = false;
+        this.missatgeAlta = `Recepta "${creada.titol}" desada correctament a l'API!`;
+        this.novaRecepta = {
+          titol: '',
+          descripcio: '',
+          categoria: 'Primers plats',
+          valoracio: 4.5,
+          destacada: false,
+        };
+        this.mostrarFormulariAlta = false;
+      },
+      error: (err: Error) => {
+        this.desant = false;
+        this.errorAlta = err.message;
+      },
+    });
   }
 }
