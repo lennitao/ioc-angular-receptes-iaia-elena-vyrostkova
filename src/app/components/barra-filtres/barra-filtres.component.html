@@ -1,50 +1,85 @@
-<form class="barra-filtres" #formulari="ngForm" (ngSubmit)="actualitzarFiltres()">
-  <div class="camp-filtre">
-    <label for="cerca">Cercar recepta pel títol</label>
-
-    <input
-      id="cerca"
-      type="search"
-      name="cerca"
-      [(ngModel)]="cerca"
-      placeholder="Ex.: escudella..."
-      required
-      minlength="3"
-      #campCerca="ngModel"
-    />
-
-    @if (campCerca.invalid && (campCerca.dirty || campCerca.touched)) {
-      @if (campCerca.errors?.['required']) {
-        <p class="missatge-error" role="alert">Has d'introduir un títol per cercar.</p>
-      } @else if (campCerca.errors?.['minlength']) {
-        <p class="missatge-error" role="alert">El títol ha de tenir un mínim de 3 caràcters.</p>
-      }
-    }
-  </div>
-
-  <div class="camp-filtre">
-    <label for="categoria">Filtrar per categoria</label>
-
-    <select id="categoria" name="categoria" [(ngModel)]="categoria">
-      <option value="">Totes les categories</option>
-
-      @for (cat of categories; track cat) {
-        <option [value]="cat">{{ cat }}</option>
-      }
-    </select>
-  </div>
-
-  <button type="submit" [disabled]="formulari.invalid">Aplicar filtres</button>
-
-  <button
-    type="button"
-    (click)="
-      cerca = '';
-      categoria = '';
-      formulari.resetForm({ cerca: '', categoria: '' });
-      actualitzarFiltres()
-    "
+<section class="zona-cerca" aria-label="Cerca i filtratge de receptes">
+  <form
+    class="barra-filtres"
+    [formGroup]="formulariCerca"
+    (ngSubmit)="actualitzarFiltres()"
+    novalidate
   >
-    Restablir filtres
-  </button>
-</form>
+    <div class="camp-filtre">
+      <label for="cerca">Cercar recepta pel títol (mínim 3 lletres)</label>
+
+      <input
+        id="cerca"
+        type="search"
+        formControlName="cerca"
+        placeholder="Ex.: escudella, crema..."
+        [attr.aria-invalid]="campCerca.invalid && (campCerca.dirty || campCerca.touched)"
+        aria-describedby="estat-validacio-cerca"
+      />
+
+      <div id="estat-validacio-cerca" class="missatges-validacio" aria-live="polite">
+        @if (campCerca.pending) {
+          <p class="missatge-info">Comprovant coincidències a l'API...</p>
+        } @else if (campCerca.errors?.['nomesEspais']) {
+          <p class="missatge-error" role="alert">
+            No es permet una cerca formada només per espais en blanc.
+          </p>
+        } @else if (campCerca.errors?.['caractersProhibits']) {
+          <p class="missatge-error" role="alert">
+            El terme conté caràcters no permesos (&lt;, &gt;, &#123;, &#125;, ;).
+          </p>
+        } @else if (campCerca.errors?.['minlength'] && (campCerca.dirty || campCerca.touched)) {
+          <p class="missatge-error" role="alert">
+            Introdueix com a mínim 3 caràcters per iniciar la cerca.
+          </p>
+        } @else if (campCerca.errors?.['senseCoincidenciesApi']) {
+          <p class="missatge-avis" role="status">
+            Avís: no existeix cap recepta a l'API amb aquest títol.
+          </p>
+        }
+      </div>
+    </div>
+
+    <div class="camp-filtre">
+      <label for="categoria">Filtrar per categoria</label>
+
+      <select id="categoria" formControlName="categoria">
+        <option value="">Totes les categories</option>
+
+        @for (cat of categories; track cat) {
+          <option [value]="cat">{{ cat }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="botons-filtre">
+      <button type="submit">Cercar</button>
+
+      <button type="button" class="btn-secundari" (click)="restablirFiltres()">Restablir</button>
+    </div>
+  </form>
+
+  @if (historial.length > 0) {
+    <div class="historial-cerques" aria-label="Historial de cerques recents">
+      <div class="historial-capcalera">
+        <span>Cerques recents:</span>
+        <button type="button" class="btn-netejar" (click)="netejarHistorial()">
+          Esborrar historial
+        </button>
+      </div>
+
+      <ul class="llista-chips">
+        @for (item of historial; track $index) {
+          <li>
+            <button type="button" class="chip-cerca" (click)="reutilitzarCerca(item)">
+              {{ item.cerca || 'Totes' }}
+              @if (item.categoria) {
+                <span class="chip-cat">({{ item.categoria }})</span>
+              }
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</section>
